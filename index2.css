@@ -1,0 +1,98 @@
+@charset "utf-8";/* 文字コードはutf-8 */
+/*-------------------------
+メインのところ
+--------------------------*/
+body{
+    background-image:url('icon/01l.jpg');
+}
+header,nav,section,footer{
+    border: 1px solid #blue;/*1pxの一本線で囲う  */
+    border-radius:8px;/*角を丸める*/
+    padding: 10px 10px 10px 10px;/*boderからコンテンツの10pxwoを(内側)パディング(余白)として確保*/
+    background:#edf4ff;/*背景色の変更*/
+}
+header{
+        background-image:url('icon/02l.jpg');
+}
+#site{
+    margin:20px auto;/* 上下20px空け　左右を（(ブラウザ幅-width)/2)空ける　センタリング */
+	padding:5px;
+    width:800px; height:656px;/*このサイズで作る*/
+    background:#11c8f2;
+    border-radius:8px;
+}
+header{
+    margin:0px 0px 0px 0px ;
+    height:60px; width:778px;
+}
+nav{
+    margin:10px 0px 10px 0px ;/*上10px　右0px　下10px　左0px空ける*/
+    float:left; /*この要素を左に寄せる　続きはこの右に回りこむ*/
+    height:500px; width:120px;
+}
+section{
+    margin:10px 0px 10px 0px ;
+    float:right;
+    
+    height:500px; width:624px;
+}
+footer{
+    margin:0px 0px 0px 0px ;
+   clear:both;/* 周りこみ解除 */
+    height:10px; width:778px;
+}
+#maintitle{
+
+    font-size:70px;
+    font-family: "ＭＳ 明朝",serif;/* フォント変更 */
+    text-shadow: 5px 5px 1px #999999;/*水平方向の距離 垂直方向の距離 影のぼかし半径(省略可) 影の色(省略可) */
+    text-align:center;
+    
+        
+    
+}
+.ani {
+animation: anime 0.5s ease -1s infinite alternate;/* animeと言う名前　1秒間する　開始と終了を滑らかに　 無限　奇数回で普通偶数で逆に再生*/
+-webkit-animation: anime 0.5s ease -1s infinite alternate;/* chorome safari用*/
+}
+@keyframes anime {/*アニメーションのプロパティ*/
+0% {width: 0px; height: 10px; background-color: #ea2226;}
+50%{width:778px; background-color:mediumseagreen;}
+100% {width: 350px; height: 10px; background-color: #dcc596;}
+}
+@-webkit-keyframes 'anime' {/*アニメーションのプロパティ*/
+0% {width: 0px; height: 10px; background-color: #ea2226;}
+50%{width:778px; background-color:mediumseagreen;}
+100% {width: 350px; height: 10px; background-color: #dcc596;}
+}
+
+/*-------------------------
+ボタンの処理
+--------------------------*/
+.btn {  
+display:block;/* インライン要素をブロック要素に */
+    
+text-align: center;
+    padding:5px;
+	font-size:20px;
+	background-color: #3677d8;
+	color: #ffffff;
+}
+a { 
+text-decoration: none; /* リンク下線消す */
+    
+}
+.btn:hover {
+	background-color: #59b1eb;
+    /* /transition:background-color 1s linear; *//* animationでなくとも可能コッチの方が楽かも */
+    animation:umo 1s ease -0.1s infinite alternate ;
+    -webkit-animation:umo 1s ease -0.1s infinite alternate ; 
+}
+@keyframes umo {/*アニメーションのプロパティ*/
+0% { background-color:#3677d8;}
+100% {background-color:#eb598c;}
+}
+@-webkit-keyframes umo {/*アニメーションのプロパティ*/
+0% { background-color:#3677d8;}
+100% {background-color:#eb598c;}
+}

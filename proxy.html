@@ -1,0 +1,116 @@
+<!DOCTYPE html><!--HTML5で書く-->
+<html lang="ja"><!--日本語で書く-->
+<html>
+	<head>
+		<meta  charset="UTF-8">  <!--HTML5では文字コードにUTF-8を強く推奨している--><!--空要素だがHTML５なので終わりを「/>」とはしない-->
+		<style type="text/css" >@import "more.css"</style>
+        <!--SyntaxHighlighter-->
+        <script type="text/javascript" src="scripts/shCore.js"></script><!-- コアスクリプト(必須) -->
+        <script type="text/javascript" src="scripts/shBrushBash.js"></script><!-- bashを使う -->
+        <link type="text/css" rel="stylesheet" href="styles/shThemeDefault.css"><!-- デザインテーマ -->
+        <script type="text/javascript">SyntaxHighlighter.all();</script><!-- スクリプトの開始(必須) -->    
+	</head>
+	<body>
+	<h2>プロキシの設定(プロキシの設定，プロキシの例外設定)</h2>
+<p>proxyの設定は普通のインターネット環境では必要なく，学内の研究室などproxyサーバー経由で無ければ，外部にアクセス出来ない場合に設定します．</p>
+<p>
+<h3>apt-getコマンドを使用する為に必要な設定</h3>
+apt.confにプロキシ設定を書きこみます．<br>
+<pre class="brush:bash;toolbar:false;gutter:false;">
+ sudo leafpad /etc/apt/apt.conf
+</pre>
+sudo：管理者権限で実行する<br>
+leafpad：ラズパイに標準で搭載されているテキストエディタ(leafpad)で開く<br>
+/etc/apt/apt.conf：ルートディレクトリの中のetcの中のaptの中のapt.conf<br>
+[/]<br>
+&nbsp;|<br><!--[&nbsp;]は半角スペースを意味する-->
+&nbsp;+[etc]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;&nbsp;&nbsp;&nbsp&nbsp;+[apt]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+[apt.conf]←これにアクセス<br>
+※既にそのファイルが有ればそれを開くが無ければ新しくその名前(今回はapt.conf)でファイルを作成する<br>
+実行すると白紙のleafpadが起動するので以下の内容を記述する
+<pre class="brush:bash;auto-links:false">
+Acquire::http::proxy "http://○○:××/";
+Acquire::https::proxy "https:///○○:××/";
+Acquire::ftp::proxy "ftp:///○○:××/";
+Acquire::socks::proxy "socks:///○○:××/";
+</pre>
+※○○はプロキシサーバーの名前，××はポート番号<br>
+</p>
+<p>
+<h3>wgetコマンドとインターネットブラウザ(epiphany)を使用する為に必要な設定</h3>
+.bashrcを開きます
+<pre class="brush:bash;toolbar:false;gutter:false;">
+ leafpad .bashrc
+</pre>
+既存のファイルなので既に約100行ほど書かれていますが，その最後に以下の内容を追加してください．
+<pre class="brush:bash;auto-links:false;first-line:104">
+export http_proxy=http://○○:××/";
+export https_proxy=https://○○:××/";
+export ftp_proxy=ftp://○○:××/";
+</pre>
+終わったらRaspbrryPiを再起動してください
+</p>
+<p>
+<h3>proxyの例外設定</h3>
+.bashrcにproxyの情報を書きこんだことでインターネットに繋がるようになりましたがローカルホストにアクセスしようとすると弾かれます<br>
+なのでローカルホストにアクセスする時にはproxyサーバーを通さないように設定します．<br>
+もう一度.bashrcを開きます
+<pre class="brush:bash;toolbar:false;gutter:false;">
+ leafpad .bashrc
+</pre>
+ファイルの一番下まで行き以下の内容にします．
+<pre class="brush:bash;auto-links:false;first-line:104;highlight:[104]">
+export no_proxy=localhost
+export http_proxy=http://○○:××/";
+export https_proxy=https://○○:××/";
+export ftp_proxy=ftp://○○:××/";
+</pre>
+※以前登録したproxy設定の上に書いてください．私の環境では一番下に書くと上手く行きませんでした．<br>
+gitは使わないことも多いので必要になったら参考サイトを見本に各自でやってください．
+</p>
+<p>
+参考サイト:<br>
+<a href="http://raspibb.blogspot.jp/2015/04/proxy.html" target="_blank">プロキシ（Proxy）環境下での本書の演習の実行<a/><br>
+<a href="http://shogo82148.github.io/blog/2012/04/09/no-proxy/" target="_blank">Linuxでプロキシの除外設定<a/><br>
+</p>
+
+
+
+<p>
+<h3>.bashrcとは何か</h3>
+色々調べてみると.bashrcと言うファイルに似た.bash_profielファイルが有るようだ．<br>
+.bash_profile：ログイン時にだけ実行される設定ファイル<br>
+.bashrc：シェルが起動した時に起動する設定ファイル．.bash_profile起動時に読み込まれる．<br>
+調べて見たがラズベリーパイのルートディレクトリには.bashrcは有るが.bash_profileが見つからなかった．<br>
+.profileが有れば.bash_profileと言うファイルいらないみたいだ<br>
+参考サイト:<br>
+<a href="http://itpro.nikkeibp.co.jp/article/Keyword/20070831/280849/" target="_blank">bashの設定ファイルとは<a/><br>
+<a href="http://www.atmarkit.co.jp/flinux/rensai/linuxtips/168bpronrc.html" target="_blank">.bash_profileと.bashrcの違いは<a/><br>
+<a href="http://qiita.com/hirokishirai/items/5a529c8395c4b336bf31" target="_blank">.bash_profile ? .bashrc ? いろいろあるけどこいつらなにもの？<a/><br>
+</p>
+<p>
+<h3>自動ログインや自動GUI起動等とproxy</h3>
+私がラズパイのOSをインストール際に参考にした，日経Linuxの記事には「最初からGUIで起動させる」と言う物が有りました<br>
+結論から言うとapt-getやwgetが使う事が出来なくてインターネットにも繋がりませんでした．<br>
+恐らくですがIDもPASSもstartxも入力しないでGUIを起動すると.bashrcが一度も呼び出されないのでその様な問題が起こったのでは推測しました．<br>
+検索すると自動ログインと言った事もラズパイでは出来るようで，為してはいないので分かりませんが同様の問題が起こりうると思います，
+</p>
+<a class="btn" href="rm.html" target="main">RaspberryPi</a><br>
+<a class="btn" href="start.html" target="main">導入(OSのインストール)</a><br>
+
+
+	</body>
+
+
+
+
+
+
+
+
+
+
+</html>
