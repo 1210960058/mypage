@@ -3,25 +3,143 @@
 <html>
 	<head>
 		<meta  charset="UTF-8">  <!--HTML5では文字コードにUTF-8を強く推奨している--><!--空要素だがHTML５なので終わりを「/>」とはしない-->
-		<style type="text/css" >@import "index2.css"</style>
+		<style type="text/css" >
+body{
+			//box-sizing: border-box;
+			margin: 0px;
+    background-image:url('icon/01l.jpg');
+
+}
+header,nav,section{
+background-color: rgba( 204, 255, 204, 0.55 );/*background noneもあるから後で修正*/
+   color: blue;
+    border: 1px solid #blue;/*1pxの一本線で囲う  */
+    padding:0px;/*boderからコンテンツの10pxwoを(内側)パディング(余白)として確保*/
+    //background:#edf4ff;/*背景色の変更*/
+}
+header{
+
+	height: 8%;
+
+}
+#site{
+position: fixed;
+    margin:0px;/* 上下20px空け　左右を（(ブラウザ幅-width)/2)空ける　センタリング */
+    width:100%; height:100%;/*このサイズで作る*/
+    background : none;
+
+
+}
+
+nav{
+    margin:0px ;/*上10px　右0px　下10px　左0px空ける*/
+    float:left; /*この要素を左に寄せる　続きはこの右に回りこむ*/
+    height:4%; width:100%;
+}
+.frame{
+    clear:both;
+
+    height:88%; width:100%;
+}
+
+#maintitle{
+margin:0px;
+    font-size:30px;
+    font-family: "ＭＳ 明朝",serif;/* フォント変更 */
+
+    text-align:center;
+    
+        
+    
+}
+.aa{
+	position: fixed;
+}
+
+.move{
+	position: fixed;
+
+}
+/*-------------------------
+ボタンの処理
+--------------------------*/
+.btn {  
+	box-sizing: border-box;
+display:block;/* インライン要素をブロック要素に */
+    float:left;    
+text-align: center;
+    padding:5px 0px 5px 0px;
+    font-size:20px;
+    background-color: #3677d8;
+    color: #ffffff;
+    width: 25%;
+    height: 100%;
+}
+a { 
+text-decoration: none; /* リンク下線消す */
+    
+}
+.btn:hover {
+    background-color: #59b1eb;
+    /* /transition:background-color 1s linear; *//* animationでなくとも可能コッチの方が楽かも */
+    animation:umo 1s ease -0.1s infinite alternate ;
+    -webkit-animation:umo 1s ease -0.1s infinite alternate ; 
+}
+@keyframes umo {/*アニメーションのプロパティ*/
+0% { background-color:#3677d8;}
+100% {background-color:#eb598c;}
+}
+@-webkit-keyframes umo {/*アニメーションのプロパティ*/
+0% { background-color:#3677d8;}
+100% {background-color:#eb598c;}
+}
+
+               .aa{
+                position: fixed;
+               }
+               .layer {
+                 display: block;
+                 width: 200%;
+                 height: 105%;
+               }
+
+               #scene {
+
+                top: -10px;
+                left: -10px;
+                 padding: 0;
+                 margin: 0;
+               }
+</style>
 		<title>INDEX</title><!--タイトル-->
 	</head>
 	<body>
+
+<ul id="scene" class="aa">
+    <li class="layer" data-depth="0.00"><img src="images/1.png"></li>
+  <li class="layer" data-depth="1.00"><img src="images/1.png"></li>
+  <li class="layer" data-depth="0.50"><img src="images/2.png"></li>
+  <li class="layer" data-depth="0.20"><img src="images/3.png"></li>
+
+</ul>
+
+
+<div class="move" data-0="top:30%;left:0%;" data-500="left:101%;">-=三(´・ω・`)1</div>
+<div class="move" data-0="top:30%;left:0%;" data-500="left:50;top44%;"><img src="hoshi.gif"></div>
+<div class="move" data-0="top:30%;left:0%;" data-250="top:70%;left:50%" data-500="left:101%;"><img src="hoshi.gif"></div>
+<div class="move" data-0="top:30%;left:0%;" data-500="left:101%;"><img src="hoshi.gif"></div>
+<div class="move" data-0="top:30%;left:0%;" data-500="left:101%;">-=三(´・ω・`)</div>
 <div id="site">
-<header id="maintitle">卒業研究HP</header>
+<header><h1 id="maintitle">卒業研究HP</h1></header>
 <nav>
-<a class="btn" href="top.html" target="main" >top</a><br>
-<a class="btn" href="pdf.html" target="main">SPI対策</a><br>
-<a  class="btn" href="memo.html" target="main">メモ</a><br>
-<a class="btn" href="profile.html" target="main">プロフィール</a><br>
-<a class="btn" href="link.html" target="main">リンク</a><br>
-<a class="btn" href="piano.html" target="main">piano</a><br>
-<a class="btn" href="rm.html" target="main">RaspberryPi</a><br>
+<a class="btn" href="top.html" target="main" >top</a>
+<a  class="btn" href="memo.html" target="main">製作物</a>
+<a  class="btn" href="memo.html" target="main">もろもろ</a>
+<a class="btn" href="rm.html" target="main">RaspberryPi</a>
 </nav>
-<section >
-<iframe src="top.html" width="630" height="500" frameborder="0"  name="main"></iframe>
+<section class="frame">
+<iframe src="top.html" width="100%" height="99%" frameborder="0"  name="main"></iframe>
 </section>
-<footer><div class="ani"></div></footer>
 </div>
 
 
@@ -29,6 +147,24 @@
 
 
 
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.pack.js"></script>
+    <script type="text/javascript" src="js/skrollr.min.js"></script>
+    <script src="js/jquery.parallax.js"></script>
+    <script type="text/javascript">
+var s = skrollr.init();
+  $('#scene').parallax({
+    calibrateX: false,
+    calibrateY: true,
+    invertX: false,
+    invertY: true,
+    limitX: false,
+    limitY: 10,
+    scalarX: 2,
+    scalarY: 8,
+    frictionX: 0.2,
+    frictionY: 0.8
+  });
+    </script>
 
 
 	</body>

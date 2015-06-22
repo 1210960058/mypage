@@ -16,15 +16,12 @@ header{
 }
 #site{
     margin:20px auto;/* 上下20px空け　左右を（(ブラウザ幅-width)/2)空ける　センタリング */
-	padding:5px;
+    padding:5px;
     width:800px; height:656px;/*このサイズで作る*/
     background:#11c8f2;
     border-radius:8px;
 }
-header{
-    margin:0px 0px 0px 0px ;
-    height:60px; width:778px;
-}
+
 nav{
     margin:10px 0px 10px 0px ;/*上10px　右0px　下10px　左0px空ける*/
     float:left; /*この要素を左に寄せる　続きはこの右に回りこむ*/
@@ -42,7 +39,7 @@ footer{
     height:10px; width:778px;
 }
 #maintitle{
-
+margin:0px;
     font-size:70px;
     font-family: "ＭＳ 明朝",serif;/* フォント変更 */
     text-shadow: 5px 5px 1px #999999;/*水平方向の距離 垂直方向の距離 影のぼかし半径(省略可) 影の色(省略可) */
@@ -74,16 +71,16 @@ display:block;/* インライン要素をブロック要素に */
     
 text-align: center;
     padding:5px;
-	font-size:20px;
-	background-color: #3677d8;
-	color: #ffffff;
+    font-size:20px;
+    background-color: #3677d8;
+    color: #ffffff;
 }
 a { 
 text-decoration: none; /* リンク下線消す */
     
 }
 .btn:hover {
-	background-color: #59b1eb;
+    background-color: #59b1eb;
     /* /transition:background-color 1s linear; *//* animationでなくとも可能コッチの方が楽かも */
     animation:umo 1s ease -0.1s infinite alternate ;
     -webkit-animation:umo 1s ease -0.1s infinite alternate ; 
