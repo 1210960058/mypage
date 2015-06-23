@@ -43,11 +43,8 @@ nav{
 }
 
 #maintitle{
-margin:0px;
-    font-size:30px;
-    font-family: "ＭＳ 明朝",serif;/* フォント変更 */
-
-    text-align:center;
+width: 100%;
+height: 100%;
     
         
     
@@ -63,6 +60,11 @@ margin:0px;
 /*-------------------------
 ボタンの処理
 --------------------------*/
+.mm{
+    float:left;  
+        width: 25%;
+    height: 100%;
+}
 .btn {  
 	box-sizing: border-box;
 display:block;/* インライン要素をブロック要素に */
@@ -111,7 +113,7 @@ text-decoration: none; /* リンク下線消す */
                  margin: 0;
                }
 </style>
-		<title>INDEX</title><!--タイトル-->
+		<title>卒業研究HP</title><!--タイトル-->
 	</head>
 	<body>
 
@@ -130,12 +132,13 @@ text-decoration: none; /* リンク下線消す */
 <div class="move" data-0="top:30%;left:0%;" data-500="left:101%;"><img src="hoshi.gif"></div>
 <div class="move" data-0="top:30%;left:0%;" data-500="left:101%;">-=三(´・ω・`)</div>
 <div id="site">
-<header><h1 id="maintitle">卒業研究HP</h1></header>
+<header><img id="maintitle" src="images/title.gif"></header>
 <nav>
-<a class="btn" href="top.html" target="main" >top</a>
-<a  class="btn" href="memo.html" target="main">製作物</a>
-<a  class="btn" href="memo.html" target="main">もろもろ</a>
-<a class="btn" href="rm.html" target="main">RaspberryPi</a>
+<a  href="top.html" target="main" ><img class="mm" src="images/hame1.gif" onmouseover="this.src='images/home.gif';" onmouseout="this.src='images/hame1.gif';">
+</a>
+<a  href="mo.html" target="main"><img class="mm" src="images/moromoro.gif" onmouseover="this.src='images/moromoro1.gif';" onmouseout="this.src='images/moromoro.gif';"></a>
+<a  href="se.html" target="main"><img class="mm" src="images/se.gif" onmouseover="this.src='images/se1.gif';" onmouseout="this.src='images/se.gif';"></a>
+<a  href="rm.html" target="main"><img class="mm" src="images/ro1.gif" onmouseover="this.src='images/ro.gif';" onmouseout="this.src='images/ro1.gif';"></a>
 </nav>
 <section class="frame">
 <iframe src="top.html" width="100%" height="99%" frameborder="0"  name="main"></iframe>
