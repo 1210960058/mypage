@@ -112,7 +112,37 @@ text-decoration: none; /* リンク下線消す */
                  padding: 0;
                  margin: 0;
                }
+
 </style>
+    <script type="text/javascript">
+ //https://w3g.jp/blog/js_browser_sniffing2015
+ //スマホの判定に使用
+    var _ua = (function(u){
+      return {
+        Tablet:(u.indexOf("windows") != -1 && u.indexOf("touch") != -1)
+          || u.indexOf("ipad") != -1
+          || (u.indexOf("android") != -1 && u.indexOf("mobile") == -1)
+          || (u.indexOf("firefox") != -1 && u.indexOf("tablet") != -1)
+          || u.indexOf("kindle") != -1
+          || u.indexOf("silk") != -1
+          || u.indexOf("playbook") != -1,
+        Mobile:(u.indexOf("windows") != -1 && u.indexOf("phone") != -1)
+          || u.indexOf("iphone") != -1
+          || u.indexOf("ipod") != -1
+          || (u.indexOf("android") != -1 && u.indexOf("mobile") != -1)
+          || (u.indexOf("firefox") != -1 && u.indexOf("mobile") != -1)
+          || u.indexOf("blackberry") != -1
+      }
+    })(window.navigator.userAgent.toLowerCase());
+
+
+    if(_ua.Mobile){
+  if(window.confirm('スマートフォン用のページに移動しますか？')){
+    location.href = "index2.html";
+  }
+  }
+
+    </script>
 		<title>卒業研究HP</title><!--タイトル-->
 	</head>
 	<body>
@@ -141,7 +171,7 @@ text-decoration: none; /* リンク下線消す */
 <a  href="rm.html" target="main"><img class="mm" src="images/ro1.gif" onmouseover="this.src='images/ro.gif';" onmouseout="this.src='images/ro1.gif';"></a>
 </nav>
 <section class="frame">
-<iframe src="top.html" width="100%" height="99%" frameborder="0"  name="main"></iframe>
+<iframe src="top.html" width="100%" height="99%" frameborder="0"  name="main" sandbox="allow-scripts"></iframe>
 </section>
 </div>
 
