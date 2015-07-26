@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>three.js</title>
+</head>
+ 
+<body>
+ 
+
+    <script src="js/three.min.js"></script>
+    <script src="js/TrackballControls.js"></script>
+    <script>
+
+        // シーンの作成 ------------------------------------------
+        var scene = new THREE.Scene();
+ 
+      
+ 
+        // カメラ作成
+        var camera = new THREE.PerspectiveCamera(70, 600/600, 1, 1000);
+        // カメラ配置
+        camera.position.set(0, 0, 100); 
+ 
+        // レンダラーの追加 ----------------------------------------
+        var renderer = new THREE.WebGLRenderer();
+        renderer.setSize(550,550); // Canvasのサイズ設定
+        document.body.appendChild(renderer.domElement);
+ 
+        // ライティングを設定する ------------------------------------
+        var color = 'white'; // 光の色
+        // ライトオブジェクトの作成
+        var directionalLight = new THREE.AmbientLight (color);
+        scene.add(directionalLight); // シーンに追加
+ 
+        // 物体を追加する ----------------------------------------
+var texture = THREE.ImageUtils.loadTexture( 'images/land_shallow_topo_2048.jpg' );
+texture.anisotropy = renderer.getMaxAnisotropy();
+        // ジオメトリーの作成
+        var geometry = new THREE.SphereGeometry(50,20,20); 
+        // マテリアルの作成()
+        var material = new THREE.MeshPhongMaterial({map: texture});
+        // メッシュの作成
+        cube1 = new THREE.Mesh(geometry, material);
+        cube1.position.set(0, 0, 0); // 位置を設定(x, y, z)
+        scene.add(cube1); // シーンに追加
+
+
+
+
+        // レンダリング ----------------------------------------
+var controls = new THREE.TrackballControls( camera );
+
+        function render() {
+          // シーンとカメラを渡してレンダリング
+                          requestAnimationFrame(render);
+cube1.rotation.y -= 0.005;
+
+          controls.update();
+          renderer.render(scene, camera);
+        }
+        render();
+
+    </script>
+ 
+</body>
+</html>
